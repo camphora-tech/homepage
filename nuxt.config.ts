@@ -1,47 +1,47 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    "@nuxt/eslint",
-    "@nuxt/image",
-    "@nuxt/ui-pro",
-    "@nuxt/content",
-    "@vueuse/nuxt",
-    "nuxt-og-image",
+    '@nuxt/eslint',
+    '@nuxt/image',
+    '@nuxt/ui-pro',
+    '@nuxt/content',
+    '@vueuse/nuxt',
+    'nuxt-og-image'
   ],
 
   devtools: {
-    enabled: true,
+    enabled: true
   },
 
-  css: ["~/assets/css/main.css"],
+  css: ['~/assets/css/main.css'],
+
+  content: {
+    preview: {
+      api: 'https://api.nuxt.studio'
+    }
+  },
 
   routeRules: {
-    "/docs": { redirect: "/docs/getting-started", prerender: false },
+    '/docs': { redirect: '/docs/getting-started', prerender: false }
   },
 
-  compatibilityDate: "2024-07-11",
+  compatibilityDate: '2024-07-11',
 
   nitro: {
     prerender: {
       routes: [
-        "/",
+        '/'
       ],
-      crawlLinks: true,
-    },
+      crawlLinks: true
+    }
   },
 
   eslint: {
     config: {
       stylistic: {
-        commaDangle: "never",
-        braceStyle: "1tbs",
-      },
-    },
-  },
-
-  content: {
-    preview: {
-      api: "https://api.nuxt.studio",
-    },
-  },
-});
+        commaDangle: 'never',
+        braceStyle: '1tbs'
+      }
+    }
+  }
+})
