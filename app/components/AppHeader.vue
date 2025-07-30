@@ -9,12 +9,8 @@ const items = computed(() => [{
   label: 'Blog',
   to: '/blog'
 }, {
-  label: 'Changelog',
+  label: 'Growth Ring',
   to: '/changelog',
-  badge: {
-    label: 'New',
-    color: 'primary' as const
-  }
 }])
 </script>
 
