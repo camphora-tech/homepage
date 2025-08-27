@@ -20,7 +20,6 @@
       <NuxtLink to="/">
         <UColorModeImage light="/logo_land_light.svg" dark="/logo_land_dark.svg" class="w-auto h-8 shrink-0" />
       </NuxtLink>
-      <TemplateMenu />
     </template>
 
     <UNavigationMenu :items="items" variant="link" />
