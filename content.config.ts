@@ -130,11 +130,11 @@ export const collections = {
     })
   }),
   changelog: defineCollection({
-    source: '4.changelog.yml',
+    source: '4.growth-ring.yml',
     type: 'page'
   }),
   versions: defineCollection({
-    source: '4.changelog/**/*',
+    source: '4.growth-ring/**/*',
     type: 'page',
     schema: z.object({
       title: z.string().nonempty(),
