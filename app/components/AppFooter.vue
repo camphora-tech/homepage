@@ -4,8 +4,6 @@ const columns = [{
   children: [{
     label: 'Help center'
   }, {
-    label: 'Docs'
-  }, {
     label: 'Roadmap'
   }, {
     label: 'Changelog'

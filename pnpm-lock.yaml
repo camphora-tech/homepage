@@ -45,6 +45,9 @@ importers:
         specifier: ^3.25.76
         version: 3.25.76
     devDependencies:
+      '@iconify-json/material-symbols':
+        specifier: ^1.2.33
+        version: 1.2.33
       '@nuxt/eslint':
         specifier: ^1.5.2
         version: 1.5.2(@vue/compiler-sfc@3.5.17)(eslint-plugin-import-x@4.15.2(@typescript-eslint/utils@8.37.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.31.0(jiti@2.4.2)))(eslint@9.31.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.3)(vite@7.0.4(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0))
@@ -672,6 +675,9 @@ packages:
 
   '@iconify-json/lucide@1.2.57':
     resolution: {integrity: sha512-I1CIObdPBIL/9v75KKoyHWNhq+qqN6ef8+iJY4AVpHLtnRu0Vbp6K0TKcoYZ70U+EgiL6krEbFdcjK3+fwpfHQ==}
+
+  '@iconify-json/material-symbols@1.2.33':
+    resolution: {integrity: sha512-Bs0X1+/vpJydW63olrGh60zkR8/Y70sI14AIWaP7Z6YQXukzWANH4q3I0sIPklbIn1oL6uwLvh0zQyd6Vh79LQ==}
 
   '@iconify-json/simple-icons@1.2.43':
     resolution: {integrity: sha512-JERgKGFRfZdyjGyTvVBVW5rftahy9tNUX+P+0QUnbaAEWvEMexXHE9863YVMVrIRhoj/HybGsibg8ZWieo/NDg==}
@@ -6749,6 +6755,10 @@ snapshots:
   '@humanwhocodes/retry@0.4.3': {}
 
   '@iconify-json/lucide@1.2.57':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/material-symbols@1.2.33':
     dependencies:
       '@iconify/types': 2.0.0
 

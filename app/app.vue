@@ -24,28 +24,23 @@ useSeoMeta({
   twitterCard: 'summary_large_image'
 })
 
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'), {
-  transform: data => data.find(item => item.path === '/docs')?.children || []
-})
-const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('docs'), {
+const { data: files } = useLazyAsyncData('search', () => queryContent().where({ _type: 'markdown' }).find(), {
   server: false
 })
 
 const links = [{
-  label: 'Docs',
-  icon: 'i-lucide-book',
-  to: '/docs/getting-started'
-}, {
-  label: 'Pricing',
-  icon: 'i-lucide-credit-card',
-  to: '/pricing'
+  label: 'Projects',
+  icon: 'i-lucide-folder-git-2',
+  to: '/project'
 }, {
   label: 'Blog',
-  icon: 'i-lucide-pencil',
+  icon: 'i-lucide-newspaper',
   to: '/blog'
+}, {
+  label: 'Growth Ring',
+  icon: 'i-lucide-rocket',
+  to: '/growth-ring'
 }]
-
-provide('navigation', navigation)
 </script>
 
 <template>
@@ -60,7 +55,6 @@ provide('navigation', navigation)
       <LazyUContentSearch
         :files="files"
         shortcut="meta_k"
-        :navigation="navigation"
         :links="links"
         :fuse="{ resultLimit: 42 }"
       />

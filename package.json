@@ -25,6 +25,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@iconify-json/material-symbols": "^1.2.33",
     "@nuxt/eslint": "^1.5.2",
     "eslint": "^9.31.0",
     "typescript": "^5.8.3",
@@ -39,8 +40,10 @@
     ],
     "ignoredBuiltDependencies": [
       "@parcel/watcher",
+      "@tailwindcss/oxide",
       "esbuild",
       "sharp",
+      "unrs-resolver",
       "vue-demi"
     ]
   },
