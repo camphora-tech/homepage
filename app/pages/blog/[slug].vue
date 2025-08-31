@@ -47,26 +47,6 @@ if (post.value.image?.src) {
         <span class="text-muted">&middot;</span>
         <time class="text-muted">{{ new Date(post.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' }) }}</time>
       </template>
-
-      <div class="flex flex-wrap items-center gap-3 mt-4">
-        <UButton
-          v-for="(author, index) in post.authors"
-          :key="index"
-          :to="author.to"
-          color="neutral"
-          variant="subtle"
-          target="_blank"
-          size="sm"
-        >
-          <UAvatar
-            v-bind="author.avatar"
-            alt="Author avatar"
-            size="2xs"
-          />
-
-          {{ author.name }}
-        </UButton>
-      </div>
     </UPageHeader>
 
     <UPage>
