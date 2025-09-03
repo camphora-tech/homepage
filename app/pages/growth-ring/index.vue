@@ -23,11 +23,7 @@
 
     <UPageBody>
       <UChangelogVersions>
-        <UChangelogVersion v-for="(version, index) in versions" :key="index" v-bind="version">
-          <template #body>
-            <ContentRenderer :value="version.body" />
-          </template>
-        </UChangelogVersion>
+        <UChangelogVersion v-for="version in versions" :key="version.id" v-bind="version" :to="version.path" />
       </UChangelogVersions>
     </UPageBody>
   </UContainer>

@@ -43,7 +43,7 @@
           'numeric' }) }}</time>
       </template>
 
-      <img v-if="post?.image" :src="post.image" :alt="post.image.alt || post.title"
+      <img v-if="post?.image" :src="post.image" :alt="post.alt || post.title"
         class="block mx-auto w-full sm:w-3/4 md:w-1/2 rounded-lg mt-8">
     </UPageHeader>
 
