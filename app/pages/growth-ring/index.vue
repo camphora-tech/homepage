@@ -23,7 +23,10 @@
 
     <UPageBody>
       <UChangelogVersions>
-        <UChangelogVersion v-for="version in versions" :key="version.id" v-bind="version" :to="version.path" />
+        <UChangelogVersion v-for="version in versions" :key="version.id" v-bind="version" :to="version.path" :ui="{
+            strategy: 'overwrite',
+            image: 'object-contain object-center w-full h-full bg-black'
+          }" />
       </UChangelogVersions>
     </UPageBody>
   </UContainer>

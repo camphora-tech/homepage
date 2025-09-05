@@ -43,8 +43,8 @@
           'numeric' }) }}</time>
       </template>
 
-      <img v-if="post?.image" :src="post.image" :alt="post.alt || post.title"
-        class="block mx-auto w-full sm:w-3/4 md:w-1/2 rounded-lg mt-8">
+      <NuxtImg v-if="post?.image" :src="post.image.src" :alt="post.alt || post.title"
+        class="block mx-auto w-full sm:w-3/4 md:w-1/2 rounded-lg mt-8" />
     </UPageHeader>
 
     <UPage>
