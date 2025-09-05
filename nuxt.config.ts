@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
-    '@nuxt/ui-pro',
+    '@nuxt/ui',
     '@nuxt/content',
     '@vueuse/nuxt',
     'nuxt-og-image'
@@ -38,6 +38,14 @@ export default defineNuxtConfig({
         commaDangle: 'never',
         braceStyle: '1tbs'
       }
+    }
+  },
+  image: {
+    domains: [
+      'images.unsplash.com'
+    ],
+    alias: {
+      unsplash: 'https://images.unsplash.com'
     }
   }
 })
