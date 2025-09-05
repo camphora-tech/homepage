@@ -106,7 +106,7 @@ export const collections = {
       description: z.string(),
       date: z.date(),
       badge: z.object({ label: z.string().nonempty() }).optional(),
-      image: z.object({ src: z.string().nonempty().editor({ input: 'media' }) })
+      image: z.object({ src: z.string().nonempty() })
     })
   })
 }
