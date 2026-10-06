@@ -25,6 +25,11 @@ const createLinkSchema = () => z.object({
   variant: variantEnum.optional()
 })
 
+const createBadgeSchema = () => z.union([
+  z.string().nonempty(),
+  z.object({ label: z.string().nonempty() })
+])
+
 const createImageSchema = () => z.object({
   src: z.string().nonempty().editor({ input: 'media' }),
   alt: z.string().optional(),
@@ -71,6 +76,10 @@ export const collections = {
       })
     })
   }),
+  projectsPage: defineCollection({
+    source: '1.projects.yml',
+    type: 'page'
+  }),
   projects: defineCollection({
     source: '1.projects/**/*',
     type: 'page',
@@ -91,7 +100,7 @@ export const collections = {
     schema: z.object({
       image: z.object({ src: z.string().nonempty().editor({ input: 'media' }) }),
       date: z.date(),
-      badge: z.object({ label: z.string().nonempty() })
+      badge: createBadgeSchema().optional()
     })
   }),
   changelog: defineCollection({
@@ -105,7 +114,7 @@ export const collections = {
       title: z.string().nonempty(),
       description: z.string(),
       date: z.date(),
-      badge: z.object({ label: z.string().nonempty() }).optional(),
+      badge: createBadgeSchema().optional(),
       image: z.object({ src: z.string().nonempty() })
     })
   })

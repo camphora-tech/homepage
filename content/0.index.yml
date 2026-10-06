@@ -1,28 +1,35 @@
-title: CamphoraTech
-description: CamphoraTechはWebアプリケーション開発やデータベース技術サポートを提供します
+title: データベースとAI技術で、事業固有の課題解決に熱心に取り組む。
+description: 業界・業務に特化したバーティカルAIを、データの設計から一緒につくります。
 seo:
-  title: CamphraTech
-  description: CamphoraTechはWebアプリケーション開発やデータベース技術サポートを提供します。
+  title: CamphoraTech
+  description: CamphoraTechはデータベースとAI技術で、事業固有の課題解決に取り組みます。バーティカルAIの開発、データベース設計、LLMを活用したシステム開発を支援します。
 navigation:
   icon: i-material-symbols-forest-outline
   description: ''
   title: ''
 hero:
-  links: []
+  links:
+    - label: メールで相談する
+      to: mailto:contact@camphora.tech
+      icon: i-lucide-mail
+      color: secondary
+    - label: Growth Ring を読む
+      to: /growth-ring
+      variant: outline
 sections: []
 features:
-  title: サービス内容
-  description: CamphoraTechは以下のサービスを扱っております。
+  title: できること
+  description: 根となるデータの設計から、その上で動くAIまで。業務に合わせて一貫してお手伝いします。
   items:
     - title: データベース技術支援
       description: データベース設計やAPIの開発を支援します。リレーショナルDBMSはもちろん、グラフ型や文書型、ベクトル型などのDBMSも対応いたします。
-      icon: i-material-symbols-database
+      icon: i-lucide-database
     - title: AIシステム開発支援
-      description: ChatGPT や Gemini などの LLM を利用したAIシステムの開発支援を行います
-      icon: i-material-symbols-robot-2
-    - title: DB技術・AI技術を活用した技術開発
-      description: 汎用的な方法では対処が困難な場合にデータベース技術とAI技術を駆使した技術開発・研究開発も行います。事業特有の課題をお持ちの方もお気軽にお声がけください．。
-      icon: i-material-symbols-handshake
+      description: ChatGPT や Gemini などの LLM を利用したAIシステムの開発を支援します。既存の業務システムやデータとの連携も含めてご相談ください。
+      icon: i-lucide-bot
+    - title: バーティカルAIの研究開発
+      description: 汎用的な方法では対処が難しい事業特有の課題に、データベース技術とAI技術を組み合わせて取り組みます。研究開発の段階からご一緒します。
+      icon: i-lucide-sprout
 testimonials:
   headline: ''
   title: ''
@@ -30,13 +37,11 @@ testimonials:
   items: []
 cta:
   title: お問い合わせ
-  description: Webアプリケーション開発やAIシステム開発についてお気軽にお問い合わせください！
+  description: データベースやAIの活用について、構想段階のご相談も歓迎です。下記のアドレスまでお気軽にご連絡ください。
   links:
-    - label: 問合せ
+    - label: メールで相談する
       to: mailto:contact@camphora.tech
-      icon: i-material-symbols-attach-email
+      icon: i-lucide-mail
       size: xl
       trailing: false
       target: ''
-      variant: subtle
-      color: primary

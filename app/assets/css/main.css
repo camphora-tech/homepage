@@ -3,25 +3,156 @@
 
 @source "../../../content/**/*";
 
+/* CamphoraTech design system — 大楠（tokens mirror the Claude Design System "CamphoraTech"） */
 @theme static {
-  --font-sans: 'Public Sans', sans-serif;
+  --font-display: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --font-body: 'BIZ UDPGothic', 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  --font-sans: var(--font-body);
 
-  --color-green-50: #EFFDF5;
-  --color-green-100: #D9FBE8;
-  --color-green-200: #B3F5D1;
-  --color-green-300: #75EDAE;
-  --color-green-400: #00DC82;
-  --color-green-500: #00C16A;
-  --color-green-600: #00A155;
-  --color-green-700: #007F45;
-  --color-green-800: #016538;
-  --color-green-900: #0A5331;
-  --color-green-950: #052E16;
+  /* 樟の葉（primary） */
+  --color-kusu-50: #EEF5EF;
+  --color-kusu-100: #D6E8DA;
+  --color-kusu-200: #B0D2B9;
+  --color-kusu-300: #8CC09A;
+  --color-kusu-400: #5E9F70;
+  --color-kusu-500: #3F7F52;
+  --color-kusu-600: #2C5A3B;
+  --color-kusu-700: #24432F;
+  --color-kusu-800: #1A3323;
+  --color-kusu-900: #12251A;
+  --color-kusu-950: #0B1710;
+
+  /* 樹皮と樟脳の緑灰（neutral） */
+  --color-jushi-50: #F3F6F2;
+  --color-jushi-100: #E4EBE3;
+  --color-jushi-200: #C9D3C7;
+  --color-jushi-300: #A4B3A6;
+  --color-jushi-400: #7D8C80;
+  --color-jushi-500: #5E6D62;
+  --color-jushi-600: #4F5C53;
+  --color-jushi-700: #3A463E;
+  --color-jushi-800: #26322A;
+  --color-jushi-900: #16231B;
+  --color-jushi-950: #0F1913;
+
+  /* 樟の新芽（secondary・問い合わせと最新の年輪だけ） */
+  --color-sprout-50: #FCEEF1;
+  --color-sprout-100: #F8D5DD;
+  --color-sprout-200: #F0AEBD;
+  --color-sprout-300: #E77A92;
+  --color-sprout-400: #D9536F;
+  --color-sprout-500: #B8324F;
+  --color-sprout-600: #9C2742;
+  --color-sprout-700: #7E1F36;
+  --color-sprout-800: #5F182A;
+  --color-sprout-900: #42111D;
+  --color-sprout-950: #2A0A12;
+}
+
+/* Semantic tokens: light = 樟脳, dark = 夜の樟葉 */
+:root {
+  --ct-surface: #F3F6F2;
+  --ct-surface-raised: #FBFCFA;
+  --ct-surface-sunken: #E4EBE3;
+  --ct-canopy: #D6E8DA;
+  --ct-ink: #18211B;
+  --ct-ink-muted: #4F5C53;
+  --ct-leaf: #24432F;
+  --ct-leaf-strong: #1A3323;
+  --ct-on-leaf: #F3F6F2;
+  --ct-moss: #5E9F70;
+  --ct-ring: #B89870;
+  --ct-ring-strong: #7A5C3A;
+  --ct-sprout: #B8324F;
+  --ct-on-sprout: #FFFFFF;
+  --ct-hairline: #C9D3C7;
+
+  --ui-bg: var(--ct-surface);
+  --ui-bg-muted: var(--ct-surface-raised);
+  --ui-bg-elevated: var(--ct-surface-sunken);
+  --ui-bg-accented: var(--ct-canopy);
+  --ui-text: var(--ct-ink);
+  --ui-text-highlighted: var(--ct-ink);
+  --ui-text-muted: var(--ct-ink-muted);
+  --ui-text-toned: var(--ct-ink-muted);
+  --ui-border: var(--ct-hairline);
+  --ui-border-muted: var(--ct-hairline);
+  --ui-primary: var(--ct-leaf);
+  --ui-secondary: var(--ct-sprout);
+  --ui-radius: 0.125rem;
+  --ui-container: 75rem;
 }
 
 .dark {
-  --ui-bg: var(--ui-color-neutral-950);
-  --ui-bg-muted: var(--ui-color-neutral-900);
-  --ui-bg-elevated: var(--ui-color-neutral-900);
-  --ui-bg-accented: var(--ui-color-neutral-800);
+  --ct-surface: #0F1913;
+  --ct-surface-raised: #16231B;
+  --ct-surface-sunken: #0A120D;
+  --ct-canopy: #1F3527;
+  --ct-ink: #E6EEE5;
+  --ct-ink-muted: #A4B3A6;
+  --ct-leaf: #8CC09A;
+  --ct-leaf-strong: #A9D3B4;
+  --ct-on-leaf: #0F1913;
+  --ct-moss: #5E9F70;
+  --ct-ring: #8A7556;
+  --ct-ring-strong: #C9A77B;
+  --ct-sprout: #E77A92;
+  --ct-on-sprout: #2A0A12;
+  --ct-hairline: #2A3A2F;
+}
+
+@theme inline {
+  --color-surface: var(--ct-surface);
+  --color-surface-raised: var(--ct-surface-raised);
+  --color-surface-sunken: var(--ct-surface-sunken);
+  --color-canopy: var(--ct-canopy);
+  --color-ink: var(--ct-ink);
+  --color-ink-muted: var(--ct-ink-muted);
+  --color-leaf: var(--ct-leaf);
+  --color-leaf-strong: var(--ct-leaf-strong);
+  --color-on-leaf: var(--ct-on-leaf);
+  --color-moss: var(--ct-moss);
+  --color-ring: var(--ct-ring);
+  --color-ring-strong: var(--ct-ring-strong);
+  --color-sprout: var(--ct-sprout);
+  --color-on-sprout: var(--ct-on-sprout);
+  --color-hairline: var(--ct-hairline);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    line-height: 1.9;
+    font-feature-settings: 'palt' 0;
+  }
+
+  /* 日本語の見出しは文節で折り返す（対応ブラウザのみ） */
+  h1, h2, h3, dt {
+    text-wrap: balance;
+    word-break: auto-phrase;
+  }
+
+  :where(a, button, [tabindex]):focus-visible {
+    outline: 2px solid var(--ct-leaf);
+    outline-offset: 2px;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  font-feature-settings: 'palt' 1;
+}
+
+@utility numeral {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+/* Section rhythm: 年輪のように広めに */
+@utility section-gap {
+  padding-block: 5rem;
+  @media (width >= 64rem) {
+    padding-block: 8rem;
+  }
 }

@@ -27,33 +27,45 @@ if (post.value.image?.src) {
     url: post.value.image.src
   })
 } else {
-  defineOgImageComponent('Saas', {
+  defineOgImageComponent('CamphoraTech', {
     headline: 'Blog'
   })
 }
+
+const badge = badgeLabel(post.value.badge)
 </script>
 
 <template>
   <UContainer v-if="post">
-    <UPageHeader
+    <PageHeading
       :title="post.title"
       :description="post.description"
     >
-      <template #headline>
-        <UBadge
-          v-bind="post.badge"
-          variant="subtle"
-        />
-        <span class="text-muted">&middot;</span>
-        <time class="text-muted">{{ new Date(post.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' }) }}</time>
+      <template #above>
+        <div class="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <NuxtLink
+            to="/blog"
+            class="text-sm font-bold text-leaf hover:underline underline-offset-4"
+          >
+            Tech Blog
+          </NuxtLink>
+          <time
+            :datetime="String(post.date)"
+            class="numeral text-lg text-ring-strong"
+          >{{ formatDate(post.date) }}</time>
+          <span
+            v-if="badge"
+            class="px-2 py-0.5 rounded-[4px] bg-canopy text-leaf text-[13px] font-bold tracking-[0.04em] leading-[1.6]"
+          >{{ badge }}</span>
+        </div>
       </template>
-    </UPageHeader>
+    </PageHeading>
 
     <UPage>
       <UPageBody>
         <ContentRenderer
-          v-if="post"
           :value="post"
+          class="max-w-[40em]"
         />
 
         <USeparator v-if="surround?.length" />

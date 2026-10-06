@@ -22,12 +22,12 @@ useSeoMeta({
   ogDescription: description
 })
 
-if (project.value.image?.src) {
+if (project.value.image?.src && !project.value.image.src.endsWith('placeholder.svg')) {
   defineOgImage({
     url: project.value.image.src
   })
 } else {
-  defineOgImageComponent('Saas', {
+  defineOgImageComponent('CamphoraTech', {
     headline: 'Project'
   })
 }
@@ -35,20 +35,38 @@ if (project.value.image?.src) {
 
 <template>
   <UContainer v-if="project">
-    <UPageHeader
+    <PageHeading
       :title="project.title"
       :description="project.description"
     >
-      <div class="flex flex-wrap items-center gap-3 mt-4">
-        <UBadge v-for="tag in project.tags" :key="tag" :label="tag" variant="soft" />
-      </div>
-    </UPageHeader>
+      <template #above>
+        <NuxtLink
+          to="/projects"
+          class="inline-block mb-6 text-sm font-bold text-leaf hover:underline underline-offset-4"
+        >
+          Projects に戻る
+        </NuxtLink>
+      </template>
+      <ul
+        v-if="project.tags?.length"
+        class="mt-6 flex flex-wrap gap-2"
+        aria-label="技術領域"
+      >
+        <li
+          v-for="tag in project.tags"
+          :key="tag"
+          class="px-2 py-0.5 rounded-[4px] bg-canopy text-leaf text-[13px] font-bold tracking-[0.04em] leading-[1.6]"
+        >
+          {{ tag }}
+        </li>
+      </ul>
+    </PageHeading>
 
     <UPage>
       <UPageBody>
         <ContentRenderer
-          v-if="project"
           :value="project"
+          class="max-w-[40em]"
         />
 
         <USeparator v-if="surround?.length" />

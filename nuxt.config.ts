@@ -40,9 +40,17 @@ export default defineNuxtConfig({
       }
     }
   },
+
+  fonts: {
+    families: [
+      { name: 'Shippori Mincho B1', provider: 'google', weights: [500, 600, 700] },
+      { name: 'BIZ UDPGothic', provider: 'google', weights: [400, 700] }
+    ]
+  },
   image: {
     domains: [
-      'images.unsplash.com'
+      'images.unsplash.com',
+      'tsucrea.com'
     ],
     alias: {
       unsplash: 'https://images.unsplash.com'

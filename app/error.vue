@@ -1,44 +1,16 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app'
 
-defineProps({
-  error: {
-    type: Object as PropType<NuxtError>,
-    required: true
-  }
-})
+const props = defineProps<{
+  error: NuxtError
+}>()
 
-useHead({
-  htmlAttrs: {
-    lang: 'en'
-  }
-})
+const notFound = computed(() => props.error.statusCode === 404)
 
 useSeoMeta({
-  title: 'Page not found',
-  description: 'We are sorry but this page could not be found.'
+  title: notFound.value ? 'ページが見つかりません' : 'エラーが発生しました',
+  description: 'お探しのページは見つかりませんでした。'
 })
-
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'), {
-  transform: data => data.find(item => item.path === '/docs')?.children || []
-})
-const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSections('docs'), {
-  server: false
-})
-
-const links = [{
-  label: 'Docs',
-  icon: 'i-lucide-book',
-  to: '/docs/getting-started'
-}, {
-  label: 'Pricing',
-  icon: 'i-lucide-credit-card',
-  to: '/pricing'
-}, {
-  label: 'Blog',
-  icon: 'i-lucide-pencil',
-  to: '/blog'
-}]
 </script>
 
 <template>
@@ -46,25 +18,25 @@ const links = [{
     <AppHeader />
 
     <UMain>
-      <UContainer>
-        <UPage>
-          <UError :error="error" />
-        </UPage>
+      <UContainer class="py-24 lg:py-32 text-center">
+        <p class="numeral text-[4rem] leading-none text-ring-strong">
+          {{ error.statusCode }}
+        </p>
+        <h1 class="mt-6 font-display font-semibold text-[2rem] leading-[1.35] text-ink">
+          {{ notFound ? 'ページが見つかりません' : 'エラーが発生しました' }}
+        </h1>
+        <p class="mt-4 mx-auto max-w-[32em] leading-[1.9] text-ink-muted">
+          {{ notFound ? 'URL が変わったか、ページが削除された可能性があります。トップページから目的のページをお探しください。' : '時間をおいて再度お試しください。解決しない場合は contact@camphora.tech までご連絡ください。' }}
+        </p>
+        <UButton
+          to="/"
+          label="トップページへ戻る"
+          size="lg"
+          class="mt-10"
+        />
       </UContainer>
     </UMain>
 
     <AppFooter />
-
-    <ClientOnly>
-      <LazyUContentSearch
-        :files="files"
-        shortcut="meta_k"
-        :navigation="navigation"
-        :links="links"
-        :fuse="{ resultLimit: 42 }"
-      />
-    </ClientOnly>
-
-    <UToaster />
   </div>
 </template>

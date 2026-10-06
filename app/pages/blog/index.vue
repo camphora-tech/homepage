@@ -2,10 +2,10 @@
 const route = useRoute()
 
 const { data: page } = await useAsyncData('blog', () => queryCollection('blog').first())
-const { data: posts } = await useAsyncData(route.path, () => queryCollection('posts').all())
+const { data: posts } = await useAsyncData(route.path, () => queryCollection('posts').order('date', 'DESC').all())
 
-const title = page.value?.seo?.title || page.value?.title
-const description = page.value?.seo?.description || page.value?.description
+const title = page.value?.seo?.title || page.value?.title || 'Tech Blog'
+const description = page.value?.seo?.description || page.value?.description || ''
 
 useSeoMeta({
   title,
@@ -14,56 +14,48 @@ useSeoMeta({
   ogDescription: description
 })
 
-defineOgImageComponent('Saas')
+defineOgImageComponent('CamphoraTech')
 </script>
 
 <template>
   <UContainer>
-    <UPageHeader
-      v-bind="page"
-      class="py-[50px]"
+    <PageHeading
+      :title="title"
+      :description="description"
     />
 
-    <UPageBody>
-      <template v-if="posts && posts.length">
-        <UBlogPosts>
-          <UBlogPost
-            v-for="(post, index) in posts"
-            :key="index"
-            :to="post.path"
-            :title="post.title"
-            :description="post.description"
-            :image="post.image"
-            :date="new Date(post.date).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })"
-            :badge="post.badge"
-            :orientation="index === 0 ? 'horizontal' : 'vertical'"
-            :class="[index === 0 && 'col-span-full']"
-            variant="naked"
-            :ui="{
-              description: 'line-clamp-2'
-            }"
-          />
-        </UBlogPosts>
-      </template>
-      <template v-else>
-        <div class="flex flex-col items-center justify-center py-12">
-          <UCard variant="ghost" class="w-full max-w-sm">
-            <div class="text-center">
-              <NuxtImg
-                src="/unsplash/photo-1488190211105-8b0e65b80b4e?q=80&w=1000&auto=format&fit=crop"
-                alt="準備中"
-                class="mx-auto mb-4 rounded-md w-full h-48 object-cover"
-              />
-              <p class="text-xl font-bold text-gray-900 dark:text-white">
-                準備中です
-              </p>
-              <p class="text-gray-500 dark:text-gray-400 mt-1">
-                新しい記事を準備しています。お楽しみに！
-              </p>
-            </div>
-          </UCard>
-        </div>
-      </template>
-    </UPageBody>
+    <div class="py-16 lg:py-24">
+      <div
+        v-if="posts?.length"
+        class="max-w-4xl"
+      >
+        <TimelineEntry
+          v-for="post in posts"
+          :key="post.path"
+          :to="post.path"
+          :date="String(post.date)"
+          :title="post.title"
+          :description="post.description"
+        />
+      </div>
+      <div
+        v-else
+        class="max-w-[36em]"
+      >
+        <h2 class="font-display font-semibold text-[1.3125rem] leading-[1.6] text-ink">
+          まだ記事はありません
+        </h2>
+        <p class="mt-3 leading-[1.9] text-ink-muted">
+          最初の技術記事を準備しています。それまでは、Growth Ring で CamphoraTech の最近の活動をご覧ください。
+        </p>
+        <UButton
+          to="/growth-ring"
+          label="Growth Ring を読む"
+          variant="outline"
+          size="lg"
+          class="mt-8"
+        />
+      </div>
+    </div>
   </UContainer>
 </template>
