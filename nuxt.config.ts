@@ -48,6 +48,8 @@ export default defineNuxtConfig({
     ]
   },
   image: {
+    // sharp を使わない（CI でビルドされず、Cloudflare 上でも動かない）。画像は元の URL をそのまま配信する
+    provider: 'none',
     domains: [
       'images.unsplash.com',
       'tsucrea.com'
