@@ -104,6 +104,7 @@ const contactAddress = computed(() => contact.value?.to.replace('mailto:', ''))
             v-for="project in projects"
             :key="project.path"
             :to="project.path"
+            :category="project.category"
             :title="project.title"
             :description="project.description"
             :image="project.image"

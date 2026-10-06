@@ -3,6 +3,7 @@ defineProps<{
   title: string
   description: string
   to: string
+  category?: string
   image?: { src: string, alt?: string }
   tags?: string[]
 }>()
@@ -22,7 +23,16 @@ defineProps<{
       />
     </div>
     <div class="min-w-0">
-      <h3 class="font-display font-semibold text-2xl leading-[1.5] text-ink group-hover:text-leaf transition-colors">
+      <p
+        v-if="category"
+        class="text-sm font-bold leading-[1.6] tracking-[0.04em] text-leaf"
+      >
+        {{ category }}
+      </p>
+      <h3
+        class="font-display font-semibold text-2xl leading-[1.5] text-ink group-hover:text-leaf transition-colors"
+        :class="category && 'mt-1'"
+      >
         {{ title }}
       </h3>
       <ul

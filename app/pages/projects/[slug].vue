@@ -40,12 +40,18 @@ if (project.value.image?.src && !project.value.image.src.endsWith('placeholder.s
       :description="project.description"
     >
       <template #above>
-        <NuxtLink
-          to="/projects"
-          class="inline-block mb-6 text-sm font-bold text-leaf hover:underline underline-offset-4"
-        >
-          Projects に戻る
-        </NuxtLink>
+        <div class="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-bold">
+          <NuxtLink
+            to="/projects"
+            class="text-leaf hover:underline underline-offset-4"
+          >
+            Projects
+          </NuxtLink>
+          <span
+            v-if="project.category"
+            class="text-ink-muted"
+          >{{ project.category }}</span>
+        </div>
       </template>
       <ul
         v-if="project.tags?.length"

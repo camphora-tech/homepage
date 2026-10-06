@@ -15,6 +15,26 @@ useSeoMeta({
 })
 
 defineOgImageComponent('CamphoraTech')
+
+// カテゴリごとにまとめる。並び順は 1.projects.yml の categories、未分類は最後
+const groups = computed(() => {
+  const defined = page.value?.categories ?? []
+  const list = projects.value ?? []
+  const result = defined.map(c => ({
+    name: c.name,
+    description: c.description,
+    projects: list.filter(p => p.category === c.name)
+  }))
+  const known = new Set(defined.map(c => c.name))
+  const others = new Map<string, typeof list>()
+  for (const p of list) {
+    if (p.category && known.has(p.category)) continue
+    const key = p.category || 'その他'
+    others.set(key, [...(others.get(key) ?? []), p])
+  }
+  for (const [name, items] of others) result.push({ name, description: undefined, projects: items })
+  return result.filter(g => g.projects.length)
+})
 </script>
 
 <template>
@@ -24,16 +44,39 @@ defineOgImageComponent('CamphoraTech')
       :description="description"
     />
 
-    <div class="grid gap-16 py-16 lg:gap-24 lg:py-24">
-      <ProjectEntry
-        v-for="project in projects"
-        :key="project.path"
-        :to="project.path"
-        :title="project.title"
-        :description="project.description"
-        :image="project.image"
-        :tags="project.tags"
-      />
+    <div class="grid gap-20 py-16 lg:gap-28 lg:py-24">
+      <section
+        v-for="group in groups"
+        :key="group.name"
+        :aria-labelledby="`category-${group.name}`"
+      >
+        <header class="pb-6 border-b border-hairline">
+          <h2
+            :id="`category-${group.name}`"
+            class="font-display font-semibold text-[1.875rem] leading-[1.45] tracking-[0.02em] text-ink"
+          >
+            {{ group.name }}
+          </h2>
+          <p
+            v-if="group.description"
+            class="mt-2 max-w-[40em] leading-[1.9] text-ink-muted"
+          >
+            {{ group.description }}
+          </p>
+        </header>
+        <div class="mt-10 grid gap-16">
+          <ProjectEntry
+            v-for="project in group.projects"
+            :key="project.path"
+            :to="project.path"
+            :category="project.category"
+            :title="project.title"
+            :description="project.description"
+            :image="project.image"
+            :tags="project.tags"
+          />
+        </div>
+      </section>
     </div>
   </UContainer>
 </template>

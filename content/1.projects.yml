@@ -2,3 +2,6 @@ title: Projects
 description: 現在進行中のプロジェクトや完了したプロジェクトの一部をご紹介します。
 navigation:
   icon: i-lucide-folder-git-2
+categories:
+  - name: CognitiBase
+    description: CognitiBase を基盤に進めているプロジェクトです。

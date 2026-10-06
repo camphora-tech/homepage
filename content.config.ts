@@ -78,7 +78,13 @@ export const collections = {
   }),
   projectsPage: defineCollection({
     source: '1.projects.yml',
-    type: 'page'
+    type: 'page',
+    schema: z.object({
+      categories: z.array(z.object({
+        name: z.string().nonempty(),
+        description: z.string().optional()
+      })).optional()
+    })
   }),
   projects: defineCollection({
     source: '1.projects/**/*',
@@ -86,8 +92,9 @@ export const collections = {
     schema: z.object({
       title: z.string().nonempty(),
       description: z.string().nonempty(),
+      category: z.string().optional(),
       image: createImageSchema(),
-      tags: z.array(z.string())
+      tags: z.array(z.string()).default([])
     })
   }),
   blog: defineCollection({
