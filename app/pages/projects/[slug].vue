@@ -6,6 +6,9 @@ if (!project.value) {
   throw createError({ statusCode: 404, statusMessage: 'Project not found', fatal: true })
 }
 
+const { data: projectsPage } = await useAsyncData('projects-page', () => queryCollection('projectsPage').first())
+const category = computed(() => projectsPage.value?.categories?.find(c => c.name === project.value?.category))
+
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
   return queryCollectionItemSurroundings('projects', route.path, {
     fields: ['description']
@@ -74,6 +77,21 @@ if (project.value.image?.src && !project.value.image.src.endsWith('placeholder.s
           :value="project"
           class="max-w-[40em]"
         />
+
+        <aside
+          v-if="category?.url"
+          class="max-w-[40em] px-6 py-5 rounded-[2px] bg-surface-raised border border-hairline"
+          :aria-label="`${category.name} について`"
+        >
+          <p class="leading-[1.9] text-ink">
+            {{ project.title }} は {{ category.name }} の事業として進めています。
+          </p>
+          <CategoryLink
+            :url="category.url"
+            :label="category.linkLabel"
+            class="mt-2"
+          />
+        </aside>
 
         <USeparator v-if="surround?.length" />
 

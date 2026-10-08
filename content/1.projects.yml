@@ -4,4 +4,6 @@ navigation:
   icon: i-lucide-folder-git-2
 categories:
   - name: CognitiBase
-    description: CognitiBase を基盤に進めているプロジェクトです。
+    description: CognitiBase の事業として進めているプロジェクトです。
+    url: https://www.cognitibase.com
+    linkLabel: CognitiBase のサイトで詳しく見る

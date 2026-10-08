@@ -13,7 +13,7 @@ hero:
       to: mailto:contact@camphora.tech
       icon: i-lucide-mail
       color: secondary
-    - label: Growth Ring を読む
+    - label: 活動の記録を見る
       to: /growth-ring
       variant: outline
 sections: []

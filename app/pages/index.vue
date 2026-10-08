@@ -14,10 +14,15 @@ useSeoMeta({
   ogDescription: description
 })
 
+defineOgImageComponent('CamphoraTech')
+
 const recent = computed(() => (events.value ?? []).slice(0, 3))
 
 const contact = computed(() => page.value?.cta.links.find(l => l.to.startsWith('mailto:')))
 const contactAddress = computed(() => contact.value?.to.replace('mailto:', ''))
+
+// メールソフトが設定されていない環境向けに、アドレスをコピーできるようにする
+const { copy, copied } = useClipboard({ legacy: true, copiedDuring: 2500 })
 </script>
 
 <template>
@@ -99,7 +104,7 @@ const contactAddress = computed(() => contact.value?.to.replace('mailto:', ''))
             プロジェクトをすべて見る
           </ULink>
         </div>
-        <div class="mt-12 grid gap-16">
+        <div class="mt-10 grid gap-10">
           <ProjectEntry
             v-for="project in projects"
             :key="project.path"
@@ -169,6 +174,26 @@ const contactAddress = computed(() => contact.value?.to.replace('mailto:', ''))
         >
           {{ contactAddress }}
         </a>
+        <div
+          v-if="contactAddress"
+          class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2"
+        >
+          <button
+            type="button"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-[4px] border border-on-leaf/70 text-sm font-bold hover:bg-on-leaf/10 transition-colors focus-visible:outline-on-leaf"
+            @click="copy(contactAddress)"
+          >
+            <UIcon
+              :name="copied ? 'i-lucide-check' : 'i-lucide-copy'"
+              class="size-4"
+              aria-hidden="true"
+            />
+            {{ copied ? 'コピーしました' : 'アドレスをコピー' }}
+          </button>
+          <p class="text-sm opacity-80">
+            メールソフトが開かない場合は、アドレスをコピーしてお使いください。
+          </p>
+        </div>
       </UContainer>
     </section>
   </div>

@@ -19,8 +19,6 @@ useHead({
 
 useSeoMeta({
   titleTemplate: '%s - CamphoraTech',
-  ogImage: '/camphoratech-ogimage.svg',
-  twitterImage: '/camphoratech-ogimage.svg',
   twitterCard: 'summary_large_image'
 })
 

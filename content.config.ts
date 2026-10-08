@@ -82,7 +82,9 @@ export const collections = {
     schema: z.object({
       categories: z.array(z.object({
         name: z.string().nonempty(),
-        description: z.string().optional()
+        description: z.string().optional(),
+        url: z.string().url().optional(),
+        linkLabel: z.string().optional()
       })).optional()
     })
   }),
@@ -93,7 +95,7 @@ export const collections = {
       title: z.string().nonempty(),
       description: z.string().nonempty(),
       category: z.string().optional(),
-      image: createImageSchema(),
+      image: createImageSchema().optional(),
       tags: z.array(z.string()).default([])
     })
   }),

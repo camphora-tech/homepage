@@ -50,7 +50,7 @@ defineOgImageComponent('CamphoraTech')
         </p>
         <UButton
           to="/growth-ring"
-          label="Growth Ring を読む"
+          label="活動の記録を見る"
           variant="outline"
           size="lg"
           class="mt-8"

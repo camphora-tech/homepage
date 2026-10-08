@@ -57,5 +57,10 @@ export default defineNuxtConfig({
     alias: {
       unsplash: 'https://images.unsplash.com'
     }
+  },
+
+  // OG画像（satori）用の日本語フォント。ビルド時に Google Fonts から取得して PNG に描く
+  ogImage: {
+    fonts: ['Shippori+Mincho+B1:600', 'BIZ+UDPGothic:400']
   }
 })

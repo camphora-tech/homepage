@@ -23,18 +23,18 @@ withDefaults(defineProps<{
       class="flex flex-col justify-between"
       style="width: 860px; padding: 72px 64px;"
     >
-      <p style="font-size: 30px; color: #7A5C3A; margin: 0;">
+      <p style="font-family: 'BIZ UDPGothic'; font-size: 30px; color: #7A5C3A; margin: 0;">
         {{ headline }}
       </p>
       <div class="flex flex-col">
-        <h1 style="font-size: 64px; line-height: 1.3; color: #18211B; margin: 0;">
+        <h1 style="font-family: 'Shippori Mincho B1'; font-weight: 600; font-size: 60px; line-height: 1.35; color: #18211B; margin: 0;">
           {{ title }}
         </h1>
         <p
           v-if="description"
-          style="font-size: 28px; line-height: 1.6; color: #4F5C53; margin: 24px 0 0;"
+          style="font-family: 'BIZ UDPGothic'; font-size: 28px; line-height: 1.6; color: #4F5C53; margin: 24px 0 0;"
         >
-          {{ description.slice(0, 80) }}
+          {{ description.length > 60 ? `${description.slice(0, 60)}…` : description }}
         </p>
       </div>
     </div>
