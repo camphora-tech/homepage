@@ -15,6 +15,12 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  // og:image などを絶対 URL にするためのサイト URL。プレビュー用ビルドでは NUXT_SITE_URL で上書きする
+  site: {
+    url: process.env.NUXT_SITE_URL || 'https://www.camphora.tech',
+    name: 'CamphoraTech'
+  },
+
   content: {
     preview: {
       api: 'https://api.nuxt.studio'
