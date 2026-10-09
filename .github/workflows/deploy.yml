@@ -1,0 +1,48 @@
+name: Deploy to Cloudflare Pages
+
+# main → 本番（www.camphora.tech）、preview → プレビュー（preview.homepage-3e2.pages.dev）
+on:
+  push:
+    branches: [main, preview]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy to Cloudflare Pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # og:image を絶対 URL にするため、プレビューではプレビューの URL を渡す（本番は nuxt.config の既定値）
+      - name: Generate static site
+        run: pnpm generate
+        env:
+          NUXT_SITE_URL: ${{ github.ref_name == 'preview' && 'https://preview.homepage-3e2.pages.dev' || '' }}
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 511b1d989845836c6b91b2466adc880e
+          command: pages deploy .output/public --project-name homepage --branch ${{ github.ref_name }} --commit-hash ${{ github.sha }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
