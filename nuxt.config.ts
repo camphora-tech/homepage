@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     public: {
       // Google Analytics (GA4) の測定 ID（G-XXXXXXXXXX）。空のときは GA を読み込まない。
       // ビルド時に NUXT_PUBLIC_GA_MEASUREMENT_ID で上書きできる
-      gaMeasurementId: '',
+      gaMeasurementId: 'G-VXHQZWKSYL',
       // GA を読み込むホスト名（カンマ区切り）。プレビューやローカルでは計測しない
       gaHosts: 'www.camphora.tech,camphora.tech'
     }
